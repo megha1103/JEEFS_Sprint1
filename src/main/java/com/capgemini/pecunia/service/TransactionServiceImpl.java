@@ -10,12 +10,18 @@ public class TransactionServiceImpl  {
 	
 	
 	TransactionDAOImpl trans=new TransactionDAOImpl();
-	public double getBalance(String accountNo)
+	//Function to retrieve balance of a particular account number
+	public double getBalance(String accountNo)throws InvalidAccountException
 	{
 		double balance=trans.getBalance(accountNo);
+		if(balance==0.0)
+		{
+			throw new InvalidAccountException("Invalid account number");
+		}
 		return balance;
 		
 	}
+	//to debit the amount using slip 
 	public String debitUsingSlip(String accountNo,double amountToDebit) throws InvalidAccountException,InvalidAccountLengthException, InsufficientBalanceException {
 	
 		TransactionDAOImpl ob=new TransactionDAOImpl();	
@@ -57,7 +63,7 @@ public class TransactionServiceImpl  {
 		}
 	}
 
-	
+	//To credit the amount using slip
 	
 	public String creditUsingSlip(String accountNo,double amountToCredit) throws InvalidAccountLengthException, InvalidAccountException
 	{

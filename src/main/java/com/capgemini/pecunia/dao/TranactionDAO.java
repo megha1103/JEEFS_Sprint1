@@ -4,7 +4,7 @@ public interface TranactionDAO {
 
 		public String getAccountById(String AccountId);
 		public double getBalance(String AccountId);
-		//public Boolean updateBalance(String AccountId );
+		
         public Integer generateTransactionId(Integer transaction);       
 		}
 
