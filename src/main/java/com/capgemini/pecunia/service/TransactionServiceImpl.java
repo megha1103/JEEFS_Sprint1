@@ -1,4 +1,5 @@
 package com.capgemini.pecunia.service;
+import com.capgemini.pecunia.dao.TransactionDAO;
 import com.capgemini.pecunia.dao.TransactionDAOImpl;
 import com.capgemini.pecunia.dto.Slip;
 import com.capgemini.pecunia.exceptions.InsufficientBalanceException;
@@ -9,15 +10,30 @@ import com.capgemini.pecunia.exceptions.InvalidAccountLengthException;
 public class TransactionServiceImpl  {
 	
 	
-	TransactionDAOImpl trans=new TransactionDAOImpl();
-	//Function to retrieve balance of a particular account number
-	public double getBalance(String accountNo)throws InvalidAccountException
+	//updateBalance(Account):Boolean
+	//constructor TransactionServiceImp();
+	
+	TransactionDAO DaoObject;
+	public TransactionServiceImpl()
 	{
-		double balance=trans.getBalance(accountNo);
-		if(balance==0.0)
+		DaoObject=new TransactionDAOImpl();
+	}
+	
+	//Function to retrieve balance of a particular account number
+	public double getBalance(String accountNo)throws InvalidAccountException, InvalidAccountLengthException
+	{
+		if(accountNo.length()!=12)
 		{
-			throw new InvalidAccountException("Invalid account number");
+			throw new InvalidAccountLengthException("Please ensure length of account number is 12 characters.");  
+			
 		}
+		double balance=	DaoObject.getBalance(accountNo);
+		
+		 if(balance==-1.0)
+		{
+			throw new InvalidAccountException("Account number invalid. Please try again.");
+		}
+	
 		return balance;
 		
 	}
@@ -25,22 +41,23 @@ public class TransactionServiceImpl  {
 	public String debitUsingSlip(String accountNo,double amountToDebit) throws InvalidAccountException,InvalidAccountLengthException, InsufficientBalanceException {
 	
 		TransactionDAOImpl ob=new TransactionDAOImpl();	
-		String id=ob.getAccountById(accountNo);
-		if(id=="Not available")
-		{
-			throw new InvalidAccountException("Account number invalid.\n Please try again.\n");
-		}
-		double balance=ob.getBalance(accountNo);
 		
-		if(id.length()!=12)
+		if(accountNo.length()!=12)
 		{
 			throw new InvalidAccountLengthException("Please ensure length of account number is 12 characters.");  
 			
 		}
-		else if((balance<200 && balance>200000))
+		String id=ob.getAccountById(accountNo);
+		double balance=ob.getBalance(accountNo);
+		 if(balance==-1.0)
+			{
+				throw new InvalidAccountException("Account number invalid. Please try again.");
+			}
+		
+		if((amountToDebit<200 && balance>amountToDebit))
 		{
 			
-			throw new InsufficientBalanceException("Balance should be in range of 200 to 200000.");
+			throw new InsufficientBalanceException("Amount to debit should be in range of 200 to 200000.");
 		
 		}
 		else if(amountToDebit>balance)
@@ -52,7 +69,7 @@ public class TransactionServiceImpl  {
 		{		
 		balance=balance-amountToDebit;
 			
-		Slip result =trans.detailsList.stream()                   	 
+		Slip result =DaoObject.detailsList().stream()                   	 
 			.filter(x ->id.equals(x.getAccountNo()))   	 
 			.findAny()                             	 
 			.orElse(null);                             	 
@@ -69,19 +86,20 @@ public class TransactionServiceImpl  {
 	{
             TransactionDAOImpl ob1=new TransactionDAOImpl();
 		    String id =ob1.getAccountById(accountNo); 	
-		    if(id=="Not available")
-			{
-				throw new InvalidAccountException("Account number invalid.\n Please try again.\n");
-			}
-			Double balance =ob1.getBalance(accountNo); 
-			if(id.length()!=12)
+		    if(accountNo.length()!=12)
 			{
 				throw new InvalidAccountLengthException("Please ensure length of account number is 12 characters.");  
 				
 			}
+			Double balance =ob1.getBalance(accountNo); 
+			 if(balance==-1.0)
+				{
+					throw new InvalidAccountException("Account number invalid. Please try again.");
+				}
+			
 			else {
 				
-			Slip result =trans.detailsList.stream()                   	 
+			Slip result =DaoObject.detailsList().stream()                   	 
 					.filter(x ->id.equals(x.getAccountNo()))   	 
 					.findAny()                             	 
 					.orElse(null);    

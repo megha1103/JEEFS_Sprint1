@@ -19,12 +19,7 @@ public String getAccountNo() {
 	return accountNo;
 }
 public void setAccountNo(String accountNo) throws InvalidAccountLengthException {
-	if(accountNo.length()!=12)
-	{
-		throw new InvalidAccountLengthException("Please ensure length of account number is 12 characters.");  
-		
-	}
-	else
+	
 	this.accountNo = accountNo;
 }
 public double getAmount() {

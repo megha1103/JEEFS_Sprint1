@@ -25,7 +25,6 @@ public class TransactionDAOImplTest extends AccountRepository
     {
         TransactionDAOImpl impl3=new TransactionDAOImpl();
         double output3=impl3.getBalance("653578966468");
-     
-     assertEquals(2000,2000,output3);
+        assertEquals(2000,2000,output3);
     }
 }

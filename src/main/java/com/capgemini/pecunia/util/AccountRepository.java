@@ -15,8 +15,8 @@ public class AccountRepository
 	 detailsList.add(new Slip("645382024465",6000));
 	 detailsList.add(new Slip("756483901355",5000));
 	 detailsList.add(new Slip("154759302323",8000));
-	 detailsList.add(new Slip("09342156745",8000));
-	 detailsList.add(new Slip("154759302323",8000));
+	 detailsList.add(new Slip("093421567450",8000));
+	 detailsList.add(new Slip("154750006323",80));
 	 }
 	public static List<Slip> getDetailsList() {
 		return detailsList;
@@ -26,7 +26,7 @@ public class AccountRepository
 		AccountRepository.detailsList = detailsList;
 	}
 	
-}
+} 
 
 /*
 public Slip getAccountById( String AccountId)
