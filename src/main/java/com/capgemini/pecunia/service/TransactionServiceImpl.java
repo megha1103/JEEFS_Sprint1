@@ -79,7 +79,7 @@ public class TransactionServiceImpl  {
 			return "Amount debit done.\n Your current updated balance is "+String.valueOf(finalBalance);
 		}
 	}
-
+ 
 	//To credit the amount using slip
 	
 	public String creditUsingSlip(String accountNo,double amountToCredit) throws InvalidAccountLengthException, InvalidAccountException

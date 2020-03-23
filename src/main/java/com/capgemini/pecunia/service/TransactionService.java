@@ -6,5 +6,5 @@ public interface TransactionService {
 	public String debitUsingSlip(String accountNo,double amountToDebit);
 	
 	//updateBalance(Account):Boolean
-	
+	 
 }

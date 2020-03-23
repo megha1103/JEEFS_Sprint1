@@ -7,10 +7,9 @@ import com.capgemini.pecunia.dto.Slip;
 
 
 public interface TransactionDAO {
-
+    	public List<Slip> detailsList();
 		public String getAccountById(String AccountId);
 		public double getBalance(String AccountId);
-		public List<Slip> detailsList();
 		//updateBalance(Account):boolean;
 		//generateTransactionId(Transaction):Boolean;
 		}
