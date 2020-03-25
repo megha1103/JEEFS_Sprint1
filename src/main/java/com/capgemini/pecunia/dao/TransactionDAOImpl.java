@@ -7,7 +7,7 @@ import com.capgemini.pecunia.util.*;
 public class TransactionDAOImpl implements TransactionDAO 
 {
 	
-	  //constructor
+	 //constructor
 	public TransactionDAOImpl()
 	{
 		new AccountRepository();

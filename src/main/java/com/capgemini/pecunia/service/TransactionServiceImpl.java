@@ -10,8 +10,7 @@ import com.capgemini.pecunia.exceptions.InvalidAccountLengthException;
 public class TransactionServiceImpl  {
 	
 	
-	//updateBalance(Account):Boolean
-	//constructor TransactionServiceImp();
+	
 	
 	TransactionDAO DaoObject;
 	public TransactionServiceImpl()

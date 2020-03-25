@@ -5,7 +5,7 @@ import java.util.List;
 import com.capgemini.pecunia.dto.Slip;
 
 
-
+ 
 public interface TransactionDAO {
     	public List<Slip> detailsList();
 		public String getAccountById(String AccountId);

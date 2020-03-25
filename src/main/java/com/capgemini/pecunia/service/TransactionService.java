@@ -5,6 +5,6 @@ public interface TransactionService {
 	public String creditUsingSlip(String accountNo,double amountToCredit);
 	public String debitUsingSlip(String accountNo,double amountToDebit);
 	
-	//updateBalance(Account):Boolean
-	 
+	
+	  
 }
