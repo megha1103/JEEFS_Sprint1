@@ -14,7 +14,7 @@ public static void main(String args[]) throws InvalidAccountLengthException, Ins
 	System.out.println("Functionality of debit and credit using slip");
 	System.out.println("=============================================\n");	
 	System.out.println();
-	  
+	   
    
 
  //System.out.println(obj.creditUsingSlip("653578966468",60));
